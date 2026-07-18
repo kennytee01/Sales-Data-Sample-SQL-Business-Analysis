@@ -1,0 +1,69 @@
+TASK 4
+Business Questions
+(page 1)
+
+1
+Finding: 307 unique orders generated $10,032,628.85 in total revenue across the dataset, with an average order-line value of $3,553.89.
+
+2
+Findings: Revenue grew from $3.52M (2003) to $4.72M (2004),
+a 34% increase. 2005 data is partial (Jan–May only); annualized at the same pace,
+2005 tracks to approximately $4.30M — a modest 9% pace decline versus 2004,
+though this should be read with caution given only 5 months of actual data.
+Recommend flagging this as "insufficient data to confirm a declining trend"
+rather than a definitive finding.
+
+3
+Sales exhibit strong, consistent seasonality, with November revenue running 3–4x above a typical month in both 2003 ($1.03M) and 2004 ($1.09M), driven by genuinely elevated order volume (28 and 33 distinct orders respectively, versus a ~9–12 order monthly average). October shows a similar but smaller pre-peak surge. This pattern, combined with the product mix (motorcycles, toys, collectibles), strongly suggests holiday-season stocking behavior by wholesale customers ahead of December retail demand.
+Business recommendation: Align inventory planning, staffing, and cash flow forecasting to anticipate this Oct–Nov demand surge; consider early-bird incentives to shift some of this volume earlier in Q3/Q4 for smoother operational load.
+
+4
+2003 Q4: $1,860,005.09 — more than 4x Q1's $445,094.69
+2004 Q4: $2,014,774.92 — nearly 2.5x Q1's $833,730.68
+Q4 is the strongest quarter in both years, Q1 consistently the weakest
+
+5. 
+Key numbers confirming the seasonality finding: 
+Oct 2003: +115.28% growth, Nov 2003: +81.22% growth
+Oct 2004: +72.38% growth, Nov 2004: +96.96% growth
+Then both years crash immediately after: Dec 2003 −74.57%, Dec 2004 −65.77%
+
+6
+Key finding:
+92.7% of order lines ($9.29M of $10.03M total) are cleanly Shipped — the business is fundamentally healthy
+Cancelled orders account for $194,487.48 (1.9% of revenue) across 60 order lines — worth knowing as "revenue at risk," though small
+On Hold, Resolved, Disputed, and In Process together represent about $546,640 (5.4% of revenue) — these are orders in various non-final states
+
+Business-relevance for report:
+92.7% of revenue reflects completed, shipped orders — a healthy fulfillment rate. Cancelled orders represent 1.9% of total revenue ($194K); while small in proportion, this is worth monitoring as a leading indicator if the cancellation rate trends upward. Disputed orders, while the smallest category by revenue ($72K), warrant particular attention since disputes often signal customer service or product quality issues rather than simple order changes — recommend a follow-up analysis on which products/customers are associated with disputed status if this data becomes available for deeper investigation.
+
+
+(page 2)
+1
+The single best-selling product, S18_3232 (Classic Cars), generated $288,245 in revenue — nearly 50% more than the next closest product. More significantly, Classic Cars account for 7 of the top 10 products by revenue, indicating this category is the primary revenue driver at the SKU level, not just a diversified spread across the catalog. Recommend prioritizing inventory availability and marketing focus on Classic Cars, and specifically safeguarding supply/demand planning around S18_3232 given its outsized individual contribution.
+
+2
+Classic Cars is the dominant revenue driver, contributing 39.07% of total revenue from 37 distinct products — more than double the next-largest category (Vintage Cars, 18.97%). Together, car-related product lines (Classic + Vintage) account for 58% of total business revenue, indicating significant category concentration risk: the business is heavily dependent on this single product family. Trains is the smallest category by a wide margin (2.26% of revenue, only 3 SKUs) — worth a follow-up review to assess whether it remains strategically worthwhile to maintain, though margin data would be needed to make that call definitively.
+Recommendation: Given the concentration in Classic/Vintage Cars, ensure supply chain resilience and inventory planning are prioritized for this category, as any disruption here would have outsized impact on total revenue. Consider whether category diversification (growing Ships, Trucks and Buses, or Planes) is a strategic priority to reduce dependency risk.
+
+3
+Medium-sized deals are the dominant revenue driver across every product line without exception, indicating the business relies on consistent mid-volume transactions rather than a small number of large, high-risk deals. This is a structurally healthy revenue pattern — reduced dependency on any single large customer or order. Large deals, while present in most categories, contribute a comparatively small share of revenue and order volume; Ships shows no Large deals at all, which may reflect either lower demand ceiling for this category or a market segment not yet explored.
+
+4.
+Using the corrected unit price (derived from SALES ÷ QUANTITYORDERED, due to a confirmed data quality issue in the original PRICEEACH field), most product lines sell above their listed MSRP — most notably Trains (+$11.12) and Vintage Cars (+$3.75). Classic Cars is the sole exception, selling slightly below MSRP (–$4.50), which may reflect volume-based discounting on the company's highest-selling category. This pattern (selling above MSRP) is unusual for typical retail and may indicate this MSRP field represents a wholesale baseline rather than a retail list price, or that demand is strong enough to command a premium — this would benefit from clarification against the original data source or business context if available.
+
+(page 3)
+
+1
+Euro Shopping Channel (Spain) is the single largest customer, generating $912,294 in revenue — approximately 9.1% of total company revenue from just 26 orders. This represents meaningful customer concentration risk: losing this single account would materially impact overall revenue. Recommend prioritizing relationship management and retention strategy for this account, while also monitoring dependency levels as part of ongoing risk assessment.
+
+2
+EMEA and North America together drive 88% of total revenue (49.63% and 38.40% respectively), reflecting the company's core established markets. Both regions show broad customer bases (44 and 38 distinct customers), indicating this dominance is distributed across many accounts rather than concentrated risk. APAC (7.44%) and Japan (4.54%) represent significantly smaller, underdeveloped markets — this may represent a genuine growth opportunity for market expansion, though further analysis (e.g. average order value per territory, growth trend by territory) would help determine if this is a market-size limitation or an untapped opportunity.
+
+3
+While EMEA leads at the territory level (49.63% of revenue), this is driven by breadth across many mid-sized markets (Spain, France, UK, Italy, and others), not a single dominant country. In contrast, North America's territory performance is driven almost entirely by one country — the USA alone generates $3.63M (36% of total company revenue), more than 3x the next-largest single country (Spain, $1.22M). This means USA represents the company's single greatest country-level concentration risk, even though EMEA leads at the aggregate territory level.
+
+4
+The top 10 customers (10.9% of the customer base) generate 29.45% of total revenue ($2.95M), indicating moderate customer concentration — not extreme, but significant enough to warrant active account management. Euro Shopping Channel alone contributes roughly 9.1% of total revenue, making it the single most important account to retain. At the geographic level, USA is the dominant single country (36% of revenue), while EMEA leads at the territory level through breadth across many mid-sized European markets rather than one dominant country.
+Recommendation: Prioritize retention and relationship management for the top 10 accounts, particularly Euro Shopping Channel given its outsized individual contribution. Given USA's concentration, monitor for any market-specific risks (economic conditions, competitor activity) that could disproportionately affect overall revenue. Consider whether targeted growth investment in APAC/Japan (currently just 12% combined) could reduce long-term geographic dependency on USA and EMEA.
+

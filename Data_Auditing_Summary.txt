@@ -1,0 +1,104 @@
+TASK 4
+================================================================================
+DATA AUDITING SUMMARY — sales_data_sample
+================================================================================
+Dataset     : 2,823 rows, 25 columns
+Date Range  : 2003-01-06 to 2005-05-31
+================================================================================
+
+#1  CHECK: Structural overview (row/column count, data types)
+    STATUS: No problem
+    FINDING: 2,823 rows, 25 columns confirmed. All data types correctly
+    assigned post-schema-fix.
+
+
+#2  CHECK: Duplicate records (ORDERNUMBER + ORDERLINENUMBER)
+    STATUS: No problem
+    FINDING: Zero duplicates found. Composite primary key holds cleanly.
+
+
+#3  CHECK: Cardinality (distinct value counts)
+    STATUS: No problem
+    FINDING: 307 unique orders, 92 customers, 109 products, 7 product lines,
+    19 countries, 4 territories, 6 statuses, 3 deal sizes — all reasonable,
+    no unexpected sprawl.
+
+
+#4  CHECK: Category value consistency (STATUS, PRODUCTLINE, DEALSIZE,
+    COUNTRY, TERRITORY)
+    STATUS: No problem
+    FINDING: All values consistently formatted — no casing issues, typos,
+    or duplicate-meaning entries.
+
+
+#5  CHECK: Numeric range checks (QUANTITYORDERED, SALES, MSRP, ORDERDATE)
+    STATUS: No problem
+    FINDING: All ranges plausible: qty 6–97, sales $482–$14,082,
+    MSRP $33–$214. No negative values or impossible outliers.
+
+#6  CHECK: ADDRESSLINE2 missing (2,521 / 2,823 = 89%)
+    STATUS: Flagged, no action needed
+    FINDING: Not a country-driven structural pattern — population varies by
+    country in line with real address complexity (Ireland 100%,
+    Australia 79%, USA only 10%). Field is populated only when a genuine
+    second address line exists. Expected behavior, not a defect.
+    Not used in core business analysis.
+
+
+#7  CHECK: STATE missing (1,819 / 2,823 = 64%)
+    STATUS: Flagged, no action needed
+    FINDING: Structurally expected — state/province is only used by USA,
+    Australia, Canada, Japan (100% populated in all four). All other
+    countries correctly show 0%. Minor inconsistency in UK (26/144
+    populated, e.g. "Isle of Wight") reflects inconsistent capture, not
+    corrupted data. Not used in core business analysis.
+
+
+#8  CHECK: POSTALCODE missing (76 / 2,823 = 2.7%)
+    STATUS: Real gap — flagged for cleaning decision
+    FINDING: Concentrated entirely in USA. Root cause: traced to exactly
+    3 customers (Corporate Gift Ideas Co., Mini Wheels Co., Men 'R' US
+    Retailers Ltd. — all California-based). Customer-record-level gap,
+    not random. City/state present for all affected rows, so regional
+    analysis unaffected. Recommend: leave null, documented — not required
+    for planned business questions.
+
+
+#9  CHECK: PRICEEACH flat placeholder value (100.00 in 1,304 / 2,823 = 46%)
+    STATUS: Critical — confirmed data defect
+    FINDING: Confirmed present in raw source CSV (not an import/casting
+    artifact). Cross-referencing the same PRODUCTCODE (S10_1678, MSRP 95)
+    shows genuine varied prices (e.g. 95.70) alongside repeated flat
+    100.00 values across unrelated customers/countries — implausible for
+    real pricing behavior. PRICEEACH cannot be trusted at face value for
+    unit-price or profitability analysis. CLEANING ACTION REQUIRED:
+    recompute corrected unit price using SALES / QUANTITYORDERED, since
+    SALES is confirmed reliable and varied.
+
+
+#10 CHECK: Cross-field validation (SALES vs QUANTITYORDERED x PRICEEACH)
+    STATUS: Confirms Finding #9
+    FINDING: Every flagged variance row traces back to the same root
+    cause — corrupted PRICEEACH, not a SALES field problem. SALES itself
+    validated as reliable.
+
+
+#11 CHECK: PHONE formatting inconsistency
+    STATUS: Flagged, low priority
+    FINDING: Multiple formats present (US 10-digit, dashed, dotted,
+    parenthetical, international +CC). Not an analytical field — not
+    used in any planned business question. Will be standardized in
+    cleaning phase per earlier instruction, using REGEXP_REPLACE +
+    COUNTRY-based E.164 normalization.
+
+
+================================================================================
+SUMMARY VERDICT
+================================================================================
+- 5 clean checks, no issues: structural overview, duplicates,
+  cardinality/categories, category consistency, numeric ranges
+- 3 explained nulls, no cleaning action needed: ADDRESSLINE2, STATE,
+  POSTALCODE (documented, not fixed)
+- 1 critical defect requiring a cleaning decision: PRICEEACH
+- 1 low-priority standardization task: PHONE
+================================================================================
