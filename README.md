@@ -243,6 +243,7 @@ Customer & Market Concentration Analysis · Business Storytelling
 | [`03b_top_products_productlines.sql`](./03b_top_products_productlines.sql) | Business Question Page 2: top products, category concentration, pricing |
 | [`03c_top_customers_territories.sql`](./03c_top_customers_territories.sql) | Business Question Page 3: top customers, territory and country concentration |
 | [`Business_Question_and_Insights.txt`](./Business_Question_and_Insights.txt) | Full written insights for all three business question pages |
+| [`Sales_Data_Sample_Business_Analysis.pdf`](./Sales_Data_Sample_Business_Analysis.pdf) | Full written documentation about the project and explanatory visuals  |
 | [`sales_data_sample.csv`](./sales_data_sample.csv) | Source dataset |
 
 ---
