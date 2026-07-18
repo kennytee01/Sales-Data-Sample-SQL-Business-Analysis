@@ -1,0 +1,107 @@
+TASK 4
+Data Cleaning steps
+Perform the following cleaning steps and document every action taken:
+Missing Values
+• Identify columns with missing values.
+• Show the number of missing values per column.
+• Handle missing values appropriately.
+• Explain why you chose a particular method.
+Duplicate Records
+• Identify duplicate rows.
+• Remove duplicates where necessary.
+• Show the number of duplicates removed.
+Standardization
+Ensure consistency in:
+• Date formats
+• Text formatting (upper/lower case)
+• Column names
+• Data types
+Data Validation
+Identify and handle:
+• Invalid values
+• Inconsistent records
+• Incorrect formats
+• Outliers or anomalies where applicable
+Cleaning Summary
+Create a summary table showing:
+Issue Found| Action Taken
+Missing Values| Filled/Removed
+Duplicates| Removed
+Invalid Entries| Corrected
+Standardization| Applied
+
+================================================================================
+DATA CLEANING SUMMARY — sales_data_sample
+================================================================================
+
+ISSUE FOUND: Missing values in ADDRESSLINE2 (2,521 rows), STATE (1,819 rows),
+POSTALCODE (76 rows)
+ACTION TAKEN: Left as NULL, no fill or removal applied
+REASON: Root cause already established during Data Auditing. ADDRESSLINE2
+and STATE are structurally optional fields, not populated for most
+countries by design. POSTALCODE gap traced to 3 specific USA customers,
+not required for planned business analysis. Imputing values here would
+introduce inaccurate data rather than correct genuine gaps.
+
+
+
+ISSUE FOUND: Duplicate records (checked on ORDERNUMBER + ORDERLINENUMBER)
+ACTION TAKEN: None required
+REASON: Zero duplicates found. Composite primary key enforces uniqueness
+at schema level.
+
+
+ISSUE FOUND: Date format consistency (ORDERDATE)
+ACTION TAKEN: None required
+REASON: Column already stored as native DATE type, confirmed via schema
+check. No text based dates or mixed formats present.
+
+
+
+ISSUE FOUND: Inconsistent text casing in CUSTOMERNAME, CITY,
+CONTACTFIRSTNAME, CONTACTLASTNAME
+ACTION TAKEN: Corrected using INITCAP to apply consistent title case
+REASON: Free text fields are more prone to inconsistent entry than
+controlled categorical fields, so casing was standardized for
+readability and consistency in reporting.
+
+
+
+ISSUE FOUND: Category field consistency (STATUS, PRODUCTLINE, DEALSIZE,
+COUNTRY, TERRITORY)
+ACTION TAKEN: None required
+REASON: All values confirmed consistently formatted, no typos, casing
+issues, or duplicate meaning entries found.
+
+
+
+ISSUE FOUND: Inconsistent PHONE number formatting (dashes, dots,
+parentheses, spaces, international prefixes)
+ACTION TAKEN: Stripped all non numeric, non plus characters using
+REGEXP_REPLACE
+REASON: Standardized phone values to a consistent digit only format for
+cleaner storage. Full country code normalization not applied since
+PHONE is not used in any planned business analysis.
+
+
+
+ISSUE FOUND: Invalid PRICEEACH values, flat placeholder of 100.00 found
+in 1,304 of 2,823 rows, 46 percent of the dataset
+ACTION TAKEN: Added new column PRICEEACH_CORRECTED, calculated as
+SALES divided by QUANTITYORDERED
+REASON: Root cause confirmed during Data Auditing as a defect present in
+the raw source file. SALES field validated as reliable, so it was used
+to recompute an accurate unit price. Original PRICEEACH retained
+unchanged to preserve raw source data for auditability.
+
+
+
+ISSUE FOUND: Statistical outliers in SALES and QUANTITYORDERED, identified
+using IQR method
+ACTION TAKEN: Reviewed and retained, no rows removed or modified
+REASON: Flagged values represent large but plausible wholesale orders
+consistent with the business context of this dataset. No evidence of
+data entry error. Removing these rows would understate revenue and
+distort downstream business analysis.
+
+================================================================================
