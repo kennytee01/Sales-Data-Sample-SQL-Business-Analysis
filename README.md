@@ -2,6 +2,8 @@
 
 **Analyzed by:** Timothy Kehinde, Data Analyst
 
+![welcome](./welcome.png)
+
 ## 1. Project Overview
 
 Businesses generate thousands of transactions across products, customers,
