@@ -188,6 +188,8 @@ Buses, or Planes is a strategic priority to reduce that dependency — and
 whether Trains is still worth maintaining, though that call needs margin
 data this dataset doesn't have.
 
+![Recommendation](./Recommendation.png)
+
 **Deal size.** Medium-sized deals dominate revenue across every product
 line without exception — a structurally healthy pattern, not dependent on a
 handful of large, high-risk deals. Recommendation: no action needed here,
