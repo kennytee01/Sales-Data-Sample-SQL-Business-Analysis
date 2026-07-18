@@ -62,7 +62,7 @@ inventory, protect key accounts, and reduce risk.
 
 ## 6. Analysis Workflow
 
-![Analysis Workflow](./images/workflow.png)
+![Analysis Workflow](./images/process_workflow.png)
 
 **Business Problem** — Defined what the business owner actually needed to
 know: where revenue concentrates, how healthy fulfillment is, and how much
